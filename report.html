@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report an issue | Tegano Masinde</title>
+<meta name="description" content="Tell Tegano what's going wrong with your WordPress website and get a first diagnosis and next step.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <a class="brand" href="index.html"><svg class="i"><use href="#i-shield"/></svg>Tegano Masinde</a>
+  <div class="top-actions">
+    <a class="nav-cta" href="index.html#cases">Case studies</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="bars"></span>Menu</button>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+  <button class="menu-close" type="button"><svg class="i"><use href="#i-x"/></svg>Close</button>
+  <ul>
+    <li style="--n:0"><a href="index.html"><small>Start</small>Home</a></li>
+    <li style="--n:1"><a href="index.html#problems"><small>Problems</small>What I fix</a></li>
+    <li style="--n:2"><a href="index.html#cases"><small>Case files</small>Case studies</a></li>
+    <li style="--n:3"><a href="index.html#about"><small>About</small>Meet Tegano</a></li>
+    <li style="--n:4"><a href="report.html"><small>Help</small>Report an issue</a></li>
+  </ul>
+  <p class="menu-foot">Freelance work: <a href="https://softwarebreaks.online" target="_blank" rel="noopener">SoftwareBreaks.online</a></p>
+</div>
+
+<main id="main" class="report">
+  <div class="report-intro">
+    <h1>Tell me what's wrong</h1>
+    <p class="lead">It takes about two minutes. The more you tell me now, the faster I can find the cause.</p>
+    <ol class="next-steps">
+      <li>You send the report. Your email app opens with it filled in, ready to send.</li>
+      <li>I read it and reply with what I think is wrong.</li>
+      <li>We agree the next step before I change anything on your site.</li>
+    </ol>
+    <p class="small">Not a website emergency? Job and contract enquiries are welcome here too.</p>
+  </div>
+
+  <div class="form-card" id="card">
+    <form id="form" novalidate>
+      <fieldset>
+        <legend><span>1</span>What's going on?</legend>
+        <div class="opts" id="issues">
+          <label class="opt"><input type="checkbox" name="issue" value="error"><span>Error or blank screen</span></label>
+          <label class="opt"><input type="checkbox" name="issue" value="hacked"><span>I think I've been hacked</span></label>
+          <label class="opt"><input type="checkbox" name="issue" value="update"><span>Broke after an update</span></label>
+          <label class="opt"><input type="checkbox" name="issue" value="slow"><span>Very slow</span></label>
+          <label class="opt"><input type="checkbox" name="issue" value="login"><span>Can't log in</span></label>
+          <label class="opt"><input type="checkbox" name="issue" value="visibility"><span>Not showing on search or AI</span></label>
+          <label class="opt"><input type="checkbox" name="issue" value="job"><span>Job or contract enquiry</span></label>
+          <label class="opt"><input type="checkbox" name="issue" value="other"><span>Something else</span></label>
+        </div>
+        <p class="err" id="e-issue" role="alert"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>2</span>Tell me more</legend>
+        <div class="field" id="f-site"><label for="site">Website address</label>
+          <input id="site" name="site" inputmode="url" placeholder="example.com" autocomplete="url"></div>
+        <div class="field" id="f-msg"><label for="msg">What are you seeing?</label>
+          <textarea id="msg" name="msg" rows="5" placeholder="For example: the homepage shows a white screen since this morning"></textarea>
+          <p class="err" id="e-msg" role="alert"></p></div>
+        <div class="field"><label for="changed">What changed just before it started? <span class="hint">(optional)</span></label>
+          <input id="changed" name="changed" placeholder="For example: I updated a plugin"></div>
+        <p class="hint" style="margin:0 0 8px">How urgent is it?</p>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="urgency" value="My site is down right now"><span>Down right now</span></label>
+          <label class="opt"><input type="radio" name="urgency" value="It's affecting visitors, so soon please" checked><span>Affecting visitors</span></label>
+          <label class="opt"><input type="radio" name="urgency" value="Not urgent"><span>Not urgent</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>3</span>How do I reach you?</legend>
+        <div class="two-f">
+          <div class="field" id="f-name"><label for="name">Your name</label>
+            <input id="name" name="name" autocomplete="name"><p class="err" id="e-name" role="alert"></p></div>
+          <div class="field" id="f-email"><label for="email">Your email</label>
+            <input id="email" name="email" type="email" autocomplete="email"><p class="err" id="e-email" role="alert"></p></div>
+        </div>
+      </fieldset>
+      <button class="btn solid" type="submit">Prepare my report</button>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <p>Tegano Masinde · WordPress support · teganomasinde.blog</p>
+  <a href="index.html">Back to home</a>
+</footer>
+<script src="script.js"></script>
+<script src="report.js"></script>
+</body>
+</html>

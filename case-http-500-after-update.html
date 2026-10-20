@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnosing a WordPress HTTP 500 Incident | Tegano Masinde</title>
+<meta name="description" content="A lab simulation: investigating an HTTP 500 error on a WordPress site after a plugin update, using Nginx, PHP-FPM and WP-CLI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="index.html"><svg class="i"><use href="#i-shield"/></svg>Tegano Masinde</a>
+  <div class="top-actions">
+    <a class="nav-cta" href="report.html">Report an issue</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="bars"></span>Menu</button>
+  </div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+  <button class="menu-close" type="button"><svg class="i"><use href="#i-x"/></svg>Close</button>
+  <ul>
+    <li style="--n:0"><a href="index.html"><small>Start</small>Home</a></li>
+    <li style="--n:1"><a href="index.html#problems"><small>Problems</small>What I fix</a></li>
+    <li style="--n:2"><a href="index.html#cases"><small>Case files</small>Case studies</a></li>
+    <li style="--n:3"><a href="index.html#about"><small>About</small>Meet Tegano</a></li>
+    <li style="--n:4"><a href="report.html"><small>Help</small>Report an issue</a></li>
+  </ul>
+  <p class="menu-foot">Freelance work: <a href="https://softwarebreaks.online" target="_blank" rel="noopener">SoftwareBreaks.online</a></p>
+</div>
+<main id="main">
+<section class="case-top">
+  <a class="crumb" href="index.html#cases"><svg class="i"><use href="#i-arrow"/></svg>All case studies</a>
+  <div class="tags"><span class="tag lab">Lab simulation</span><span class="tag">Ubuntu · Nginx · PHP-FPM · MariaDB</span></div>
+  <h1>Diagnosing a WordPress HTTP 500 Incident</h1>
+  <p class="lead">A WordPress agency website returns HTTP 500 errors after a plugin update. How I confirm the impact, read the logs, and prove the cause before changing anything.</p>
+</section>
+<figure class="case-fig">
+  <img src="assets/case-http500.svg" alt="Illustration of a website returning an HTTP 500 error" width="1200" height="675">
+  <figcaption>Illustration only. This case is a lab simulation, so no real client site is shown.</figcaption>
+</figure>
+<div class="case-grid">
+  <article class="prose">
+
+<p>An agency WordPress website on an Ubuntu Server VPS starts returning HTTP 500 responses after a plugin update. The administrator says the dashboard is unavailable and important functionality may be affected. The investigation checks the web server, PHP-FPM, the WordPress plugin state and the application logs to find the cause. The goal is to restore service safely and document evidence anyone can verify.</p>
+<div class="callout"><p><strong>This is a lab simulation.</strong> The scenario and the log excerpts below are illustrative. They are not evidence from a real client engagement. Real before-and-after results will be added once I have reproduced the scenario in my lab.</p></div>
+<p>The example environment is an Ubuntu Server 22.04 LTS VPS running Nginx, PHP-FPM and MariaDB, with a WordPress agency site on top. The tools are SSH, curl, systemctl, journalctl, WP-CLI and the Nginx and PHP logs. The PHP version has to be confirmed on the actual server.</p>
+<p>The reported symptoms are:</p>
+<ul>
+  <li>The browser shows "500 Internal Server Error".</li>
+  <li>It began after a plugin update, according to the site administrator.</li>
+  <li>The WordPress dashboard may be unavailable.</li>
+  <li>It happens in every browser, which suggests it is not a local cache problem.</li>
+</ul>
+<blockquote>An HTTP 500 is a symptom, not a diagnosis. The timing of a plugin update is a lead to investigate, not proof that the plugin caused the outage.</blockquote>
+<ol class="stages">
+  <li><strong>Triage first</strong>Record the time, the affected URL, the exact HTTP response, any recent changes, and how much is affected. Check whether the homepage, wp-admin and the business-critical workflows all fail. Capture the logs before making more than one change.</li>
+  <li><strong>Collect evidence with read-only commands</strong>Nothing here changes the server, so it is safe to run first.
+    <div class="code"><div class="code-bar"><span>Read-only diagnostics</span><button type="button" data-copy>Copy</button></div><pre><code><span class="c"># Confirm the response from the affected site</span>
+curl -sS -D - -o /dev/null https://example.com/
+
+<span class="c"># Check service status (adjust the PHP-FPM service name to the installed version)</span>
+sudo systemctl status nginx php8.1-fpm mariadb --no-pager
+
+<span class="c"># Validate the Nginx configuration</span>
+sudo nginx -t
+
+<span class="c"># Inspect recent Nginx errors</span>
+sudo tail -n 100 /var/log/nginx/error.log
+
+<span class="c"># Inspect PHP-FPM logs, if configured at this path</span>
+sudo tail -n 100 /var/log/php8.1-fpm.log
+
+<span class="c"># Inspect the PHP-FPM service journal</span>
+sudo journalctl -u php8.1-fpm --since "30 minutes ago" --no-pager
+
+<span class="c"># From the WordPress directory, inspect plugin state</span>
+wp plugin list --path=/var/www/example.com/public_html</code></pre></div>
+  </li>
+  <li><strong>Read the error carefully</strong>Nginx may record an upstream PHP error like the one below. Exact messages vary with the PHP version, the Nginx setup and the logging settings.
+    <div class="code"><div class="code-bar"><span>Illustrative log excerpt (not real client evidence)</span><button type="button" data-copy>Copy</button></div><pre><code><span class="r">2026/10/15 14:23:17 [error] 1842#1842: *1024 FastCGI sent in stderr:</span>
+<span class="r">"PHP message: PHP Fatal error: Uncaught Error: Call to undefined function</span>
+<span class="r">vendor_extension_required_function() in</span>
+<span class="r">/var/www/example.com/public_html/wp-content/plugins/example-extension/includes/feature.php:312"</span>
+while reading response header from upstream, client: 203.0.113.24,
+server: example.com, request: "GET / HTTP/1.1",
+upstream: "fastcgi://unix:/run/php/php8.1-fpm.sock"</code></pre></div>
+    This example suggests PHP tried to call a function that was not available. It does not prove a WooCommerce-specific incompatibility. The real function, file, plugin version, dependencies and stack trace must be confirmed before naming a root cause. PHP application errors may also be logged only through Nginx or a dedicated PHP log, depending on how logging is set up.
+  </li>
+  <li><strong>Find the root cause</strong>
+    <ul>
+      <li>Match the first 500 response against the reported update time.</li>
+      <li>Identify the first relevant fatal error and its file and line.</li>
+      <li>Work out which plugin or theme owns the failing file.</li>
+      <li>Check that plugin's requirements and release notes against the installed WordPress and PHP versions.</li>
+      <li>Reproduce the failure on a staging or disposable copy when possible.</li>
+      <li>Isolate the suspected component only after the evidence is saved and the action is safe.</li>
+    </ul>
+    If the evidence points to a missing PHP extension, bad permissions, a database problem or a PHP-FPM setting instead, that cause gets investigated instead.
+  </li>
+  <li><strong>Fix it with the smallest safe change</strong>Choose the least disruptive fix for the confirmed cause. That might be updating the extension to a compatible release, rolling back to a known-good version, installing a documented dependency, or correcting one specific setting or permission. Before touching production, take a verified backup or snapshot and note the current plugin version. If a plugin has to be switched off, think about what it affects (checkout, forms, memberships, bookings). Avoid broad recursive chown or chmod commands as a shortcut.</li>
+  <li><strong>Verify the result</strong>
+    <ul>
+      <li>Repeat the same HTTP request and confirm the expected status.</li>
+      <li>Test the homepage, wp-admin and the workflow that was broken.</li>
+      <li>Check the Nginx and PHP-FPM logs for new relevant errors.</li>
+      <li>Confirm the database and required services are healthy.</li>
+      <li>If a reload or restart was needed, confirm the fix survives it.</li>
+      <li>Record timestamps and sanitised command output.</li>
+    </ul>
+    <div class="code"><div class="code-bar"><span>Quick response check</span><button type="button" data-copy>Copy</button></div><pre><code>curl -sS -o /dev/null -w 'HTTP %{http_code}\n' https://example.com/</code></pre></div>
+    A 200 response alone does not prove every WordPress feature works, so the broken workflow itself gets tested.
+  </li>
+</ol>
+<p><strong>Preventing a repeat:</strong> keep tested backups and a written recovery procedure, test high-risk plugin updates on staging where practical, check plugin, WordPress and PHP compatibility before deploying, monitor availability and the relevant error logs, and keep a record of the incident timeline, cause, fix and verification.</p>
+<p>Throughout, the client hears about it in plain words. A sample update:</p>
+<blockquote>We identified a server-side error affecting the WordPress site and are investigating the relevant application and PHP logs. We will confirm the underlying cause before making a targeted change. After the fix, we will test the site and the affected workflow, then provide a summary of the cause and preventive recommendations.</blockquote>
+<p>This case shows the workflow I follow: confirm the impact, collect logs, connect the failure to recent changes, isolate the root cause, apply a controlled fix, and verify recovery.</p>
+  </article>
+  <aside class="note-box"><b>NOTE</b><p>A server error is a symptom, not an answer. Seeing it start after a plugin update is a lead to check, not proof of the cause.</p><p>This lab walks through the order I work in: triage, read-only logs, the first fatal error, the smallest safe fix, then testing the broken workflow, not just the homepage.</p><p>Log excerpts are illustrative until I add results from the lab run.</p></aside>
+</div>
+<div class="case-nav"><a href="case-nulled-plugin-compromise.html">&larr; Previous case</a><a href="index.html#cases">All case studies</a><a href="case-photo-upload-failure.html">Next case &rarr;</a></div>
+</main>
+<footer>
+  <p>Tegano Masinde · WordPress support · teganomasinde.blog</p>
+  <a href="index.html">Back to home</a>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

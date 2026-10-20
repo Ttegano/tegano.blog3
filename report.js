@@ -1,12 +1,12 @@
 /* Report form.
    There is no server behind this static site, so "sending" opens the visitor's
    email app with the report filled in, and also offers a Copy button.
-   >>> Set your real address on the next line. <<< */
-const CONTACT_EMAIL = 'YOUR_EMAIL@example.com';
+   */
+const CONTACT_EMAIL = 'vikkmkunzzy@gmail.com';
 
 const LABELS = {
   error: 'Error or blank screen', hacked: "I think I've been hacked", update: 'Broke after an update',
-  slow: 'Very slow', login: "Can't log in", visibility: 'Not showing on search or AI',
+  slow: 'Very slow', login: "Can't log in", visibility: 'Not showing on google search or AI search',
   job: 'Job or contract enquiry', other: 'Something else'
 };
 const form = document.getElementById('form');
@@ -85,7 +85,7 @@ form.addEventListener('submit', e => {
   $('copy').addEventListener('click', async ev => {
     try { await navigator.clipboard.writeText(text); } catch (_) {
       const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select();
-      try { document.execCommand('copy'); } catch (__) {} t.remove();
+      try { document.execCommand('copy'); } catch (__) { } t.remove();
     }
     ev.target.textContent = 'Copied';
   });

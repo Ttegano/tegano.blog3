@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WordPress Site Compromise: Diagnosis &amp; Incident Response | Tegano Masinde</title>
+  <meta name="description"
+    content="A WordPress site crashed on every page. What looked like a plugin version mismatch was a compromise caused by pirated plugins.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <a class="brand" href="index.html"><svg class="i">
+        <use href="#i-shield" />
+      </svg>Tegano Masinde</a>
+    <div class="top-actions">
+      <a class="nav-cta" href="report.html">Report an issue</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span
+          class="bars"></span>Menu</button>
+    </div>
+  </header>
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+    <button class="menu-close" type="button"><svg class="i">
+        <use href="#i-x" />
+      </svg>Close</button>
+    <ul>
+      <li style="--n:0"><a href="index.html"><small>Start</small>Home</a></li>
+      <li style="--n:1"><a href="index.html#problems"><small>Problems</small>What I fix</a></li>
+      <li style="--n:2"><a href="index.html#cases"><small>Case files</small>Case studies</a></li>
+      <li style="--n:3"><a href="index.html#about"><small>About</small>Meet Tegano</a></li>
+      <li style="--n:4"><a href="report.html"><small>Help</small>Report an issue</a></li>
+    </ul>
+    <p class="menu-foot">Freelance work: <a href="https://softwarebreaks.online" target="_blank"
+        rel="noopener">SoftwareBreaks.online</a></p>
+  </div>
+  <main id="main">
+    <section class="case-top">
+      <a class="crumb" href="index.html#cases"><svg class="i">
+          <use href="#i-arrow" />
+        </svg>All case studies</a>
+      <div class="tags"><span class="tag">Security incident response</span><span class="tag">WordPress +
+          Elementor</span></div>
+      <h1>WordPress Site Compromise: Diagnosis &amp; Incident Response</h1>
+      <p class="lead">A small business's WordPress and Elementor site was crashing on every page. What began as a
+        routine plugin-compatibility check turned into uncovering a live site compromise.</p>
+    </section>
+    <figure class="case-fig">
+      <img src="assets/case-security.svg"
+        alt="Illustration of the PHP error shown on every page of the compromised site" width="1200" height="675">
+      <figcaption>Illustration based on the error described in this case. It is not a screenshot from the client site.
+      </figcaption>
+    </figure>
+    <div class="case-grid">
+      <article class="prose">
+
+        <p>A client's business website began throwing a fatal PHP error on every page load. The first diagnosis pointed
+          to a plausible but incorrect explanation: an Elementor core and Elementor Pro version mismatch. Deeper
+          investigation revealed the actual cause. The site had been built using pirated ("nulled") copies of premium
+          plugins, one of which was phoning out to an external server and had been used to inject hidden spam content. A
+          backdoor file that allowed remote admin-account creation was also found in a backup.</p>
+        <p>The site was fully remediated: malicious content removed, backdoor confirmed absent from the live server, all
+          plugins replaced with genuine licensed copies, credentials rotated, and monitoring put in place.</p>
+        <ol class="stages">
+          <li><strong>The symptom</strong>Every page returned a PHP fatal error, preceded by a warning about a missing
+            <code>widgetType</code> key in the page's saved Elementor data.
+            <div class="code">
+              <div class="code-bar"><span>PHP fatal error</span><button type="button" data-copy>Copy</button></div>
+              <pre><code><span class="r">Uncaught Error: Call to a member function get_default_args() on array</span></code></pre>
+            </div>
+          </li>
+          <li><strong>First hypothesis: a plugin version mismatch</strong>The error pattern, a malformed element in
+            saved page data, fits an Elementor core and Elementor Pro version mismatch. That is a common,
+            well-documented failure, so I pursued it first as the most likely and lowest-risk explanation.
+            <ul>
+              <li>Updating Elementor Pro failed with "update package not available".</li>
+              <li>Elementor core and Elementor Pro were confirmed to be on mismatched versions.</li>
+              <li>The Pro license was connected to an account with only a free subscription tier, even though Pro was
+                installed and active.</li>
+            </ul>
+          </li>
+          <li><strong>Narrowing the fault with controlled tests</strong>Rather than assume a licensing fix would stop
+            the crash, I ran more tests before recommending any purchase. I purged the site cache to rule out a cached
+            page masking the real behaviour, then temporarily deactivated Elementor Pro entirely to see whether the
+            crash was Pro-specific. It was not: the crash continued on one specific page whatever the state of Pro. That
+            ruled out the version mismatch as the only cause and pointed to corrupted or malicious content in the page's
+            own saved data.</li>
+          <li><strong>Escalating to direct server access</strong>With the fault isolated to specific saved content, and
+            with the client's authorization, I inspected the site's files and database directly instead of continuing to
+            infer from error messages.</li>
+          <li><strong>The root cause</strong>Direct inspection revealed three things:
+            <ul>
+              <li><b>Hidden spam injection.</b> Invisible links to third-party gambling sites had been inserted into the
+                homepage content about six weeks earlier. Visitors could not see them, but search engines could crawl
+                them, a classic SEO-spam technique that piggybacks on a compromised site's domain authority.</li>
+              <li><b>A backdoor file</b> in a server backup, able to create administrator accounts remotely. This is the
+                kind of persistence mechanism used to get back in even after a compromise is partly cleaned up.</li>
+              <li><b>Multiple pirated plugins</b>, including a cracked copy of the premium page builder that faked its
+                own license validation and loaded content from an external, unaffiliated domain. That was a strong sign
+                the nulled plugin was the way the spam got in.</li>
+            </ul>
+          </li>
+        </ol>
+        <p><strong>The cleanup covered:</strong></p>
+        <ul>
+          <li>Removing the hidden spam content from the homepage.</li>
+          <li>Confirming the backdoor file was not on the live server (it was only in an older backup).</li>
+          <li>Running a full malware and security scan, which came back clean.</li>
+          <li>Removing all pirated plugins and replacing them with the client's own genuine, licensed copies, and
+            removing unused or orphaned plugins to reduce the attack surface.</li>
+          <li>Installing a reputable security plugin under the client's own account, with alerts sent to their email.
+          </li>
+          <li>Rotating all site passwords and forcing other sessions and logins out.</li>
+          <li>Changing the site's administrative contact email from the original developer's address to the client's
+            own.</li>
+          <li>Enforcing HTTPS site-wide and correcting locale and timezone settings.</li>
+          <li>Bringing all plugins and WordPress core up to date and re-enabling automatic updates.</li>
+        </ul>
+        <p><strong>Recommended next steps:</strong></p>
+        <ul>
+          <li>Turn on two-factor authentication for the site's admin login and the client's email account.</li>
+          <li>Review Google Search Console for indexing damage or manual action flags from the spam period.</li>
+          <li>Send a formal written inquiry to the original developer asking for an explanation of the pirated software,
+            the backdoor file and the timeline of changes, keeping a record of the findings in case further action is
+            needed.</li>
+        </ul>
+        <p><strong>What this case taught me:</strong></p>
+        <ul>
+          <li>A plausible error message can hide a much more serious cause. The version-mismatch theory was reasonable
+            and worth ruling out first, but stopping at a "good enough" explanation would have missed the compromise.
+          </li>
+          <li>Nulled plugins are a real attack vector, not just a licensing shortcut. One was actively phoning out to an
+            external server.</li>
+          <li>Backdoors can survive in backups after being removed from the live site, so historical backups are worth
+            auditing too.</li>
+          <li>Changing one thing at a time, confirming before spending money, and escalating to deeper tools only once
+            the problem is well scoped is more reliable than jumping to the first fix that matches the symptoms.</li>
+        </ul>
+        <p class="small">Details in this write-up have been generalised to protect the client's identity and any third
+          parties involved.</p>
+      </article>
+      <aside class="note-box"><b>NOTE</b>
+        <p>A convincing error can point the wrong way. The Elementor version mismatch was real, but it was not the whole
+          story.</p>
+        <p>Controlled tests (clearing the cache, switching one plugin off) showed the crash came from the page's saved
+          content. Inspecting the server revealed hidden spam, a backdoor in an old backup, and pirated plugins as the
+          way in.</p>
+      </aside>
+    </div>
+    <div class="case-nav"><span></span><a href="index.html#cases">All case studies</a><a
+        href="case-http-500-after-update.html">Next case &rarr;</a></div>
+  </main>
+  <footer>
+    <p>Tegano Masinde · WordPress support · teganomasinde.blog</p>
+    <a href="index.html">Back to home</a>
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>

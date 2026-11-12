@@ -26,18 +26,16 @@
     </div>
   </header>
   <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
-    <button class="menu-close" type="button"><svg class="i">
-        <use href="#i-x" />
-      </svg>Close</button>
+    <button class="menu-close" type="button"><svg class="i"><use href="#i-x" /></svg>Close</button>
     <ul>
       <li style="--n:0"><a href="../index.html"><small>Start</small>Home</a></li>
-      <li style="--n:1"><a href="../index.html#problems"><small>Problems</small>What I fix</a></li>
-      <li style="--n:2"><a href="../index.html#cases"><small>Case files</small>Case studies</a></li>
-      <li style="--n:3"><a href="../index.html#about"><small>About</small>Meet Tegano</a></li>
-      <li style="--n:4"><a href="../report.html"><small>Help</small>Report an issue</a></li>
+      <li style="--n:1"><a href="../index.html#security"><small>Security</small>Security &amp; hardening</a></li>
+      <li style="--n:2"><a href="../index.html#problems"><small>Problems</small>What I fix</a></li>
+      <li style="--n:3"><a href="../index.html#cases"><small>Case files</small>Case studies</a></li>
+      <li style="--n:4"><a href="../index.html#blog"><small>Notes</small>Blog</a></li>
+      <li style="--n:5"><a href="../index.html#about"><small>About</small>Meet Tegano</a></li>
+      <li style="--n:6"><a href="../report.html"><small>Help</small>Report an issue</a></li>
     </ul>
-    <p class="menu-foot">Freelance work: <a href="https://softwarebreaks.online" target="_blank"
-        rel="noopener">SoftwareBreaks.online</a></p>
   </div>
   <main id="main">
     <section class="case-top">
@@ -51,7 +49,7 @@
         impact, read the logs, and prove the cause before changing anything.</p>
     </section>
     <figure class="case-fig">
-      <img src="../assets/plugin-update-error.jpg" alt="a jpg " width="1200" height="675">
+      <img src="../assets/plugin-update-error.jpg" alt="Software updater graphic with two circular arrows" width="1400" height="844" fetchpriority="high" decoding="async">
       <figcaption>Illustration only. This case is a lab simulation, so no real client site is shown.</figcaption>
     </figure>
     <div class="case-grid">
@@ -87,7 +85,7 @@
             <div class="code">
               <div class="code-bar"><span>Read-only diagnostics</span><button type="button" data-copy>Copy</button>
               </div>
-              <pre><code><span class="c"># Confirm the response from the affected site</span>
+              <pre tabindex="0"><code><span class="c"># Confirm the response from the affected site</span>
 curl -sS -D - -o /dev/null https://example.com/
 
 <span class="c"># Check service status (adjust the PHP-FPM service name to the installed version)</span>
@@ -114,7 +112,7 @@ wp plugin list --path=/var/www/example.com/public_html</code></pre>
             <div class="code">
               <div class="code-bar"><span>Illustrative log excerpt (not real client evidence)</span><button
                   type="button" data-copy>Copy</button></div>
-              <pre><code><span class="r">2026/10/15 14:23:17 [error] 1842#1842: *1024 FastCGI sent in stderr:</span>
+              <pre tabindex="0"><code><span class="r">2026/10/15 14:23:17 [error] 1842#1842: *1024 FastCGI sent in stderr:</span>
 <span class="r">"PHP message: PHP Fatal error: Uncaught Error: Call to undefined function</span>
 <span class="r">vendor_extension_required_function() in</span>
 <span class="r">/var/www/example.com/public_html/wp-content/plugins/example-extension/includes/feature.php:312"</span>
@@ -157,7 +155,7 @@ upstream: "fastcgi://unix:/run/php/php8.1-fpm.sock"</code></pre>
             </ul>
             <div class="code">
               <div class="code-bar"><span>Quick response check</span><button type="button" data-copy>Copy</button></div>
-              <pre><code>curl -sS -o /dev/null -w 'HTTP %{http_code}\n' https://example.com/</code></pre>
+              <pre tabindex="0"><code>curl -sS -o /dev/null -w 'HTTP %{http_code}\n' https://example.com/</code></pre>
             </div>
             A 200 response alone does not prove every WordPress feature works, so the broken workflow itself gets
             tested.
@@ -188,7 +186,7 @@ upstream: "fastcgi://unix:/run/php/php8.1-fpm.sock"</code></pre>
         studies</a><a href="case-server.html">Next case &rarr;</a></div>
   </main>
   <footer>
-    <p>Tegano Masinde · WordPress support · teganomasinde.blog</p>
+    <p>Tegano Masinde · WordPress support · softwarebreaks.online</p>
     <a href="../index.html">Back to home</a>
   </footer>
   <script src="../script.js"></script>

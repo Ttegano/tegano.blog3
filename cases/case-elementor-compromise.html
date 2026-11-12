@@ -26,18 +26,16 @@
     </div>
   </header>
   <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
-    <button class="menu-close" type="button"><svg class="i">
-        <use href="#i-x" />
-      </svg>Close</button>
+    <button class="menu-close" type="button"><svg class="i"><use href="#i-x" /></svg>Close</button>
     <ul>
       <li style="--n:0"><a href="../index.html"><small>Start</small>Home</a></li>
-      <li style="--n:1"><a href="../index.html#problems"><small>Problems</small>What I fix</a></li>
-      <li style="--n:2"><a href="../index.html#cases"><small>Case files</small>Case studies</a></li>
-      <li style="--n:3"><a href="../index.html#about"><small>About</small>Meet Tegano</a></li>
-      <li style="--n:4"><a href="../report.html"><small>Help</small>Report an issue</a></li>
+      <li style="--n:1"><a href="../index.html#security"><small>Security</small>Security &amp; hardening</a></li>
+      <li style="--n:2"><a href="../index.html#problems"><small>Problems</small>What I fix</a></li>
+      <li style="--n:3"><a href="../index.html#cases"><small>Case files</small>Case studies</a></li>
+      <li style="--n:4"><a href="../index.html#blog"><small>Notes</small>Blog</a></li>
+      <li style="--n:5"><a href="../index.html#about"><small>About</small>Meet Tegano</a></li>
+      <li style="--n:6"><a href="../report.html"><small>Help</small>Report an issue</a></li>
     </ul>
-    <p class="menu-foot">Freelance work: <a href="https://softwarebreaks.online" target="_blank"
-        rel="noopener">SoftwareBreaks.online</a></p>
   </div>
   <main id="main">
     <section class="case-top">
@@ -51,7 +49,7 @@
         routine plugin-compatibility check turned into uncovering a live site compromise.</p>
     </section>
     <figure class="case-fig">
-      <img src="../assets/security-incident.jpg" alt="jpg illustration of the errors" width="1200" height="675">
+      <img src="../assets/security-incident.jpg" alt="Browser console filled with repeated 'Failed to load resource' errors" width="1400" height="933" fetchpriority="high" decoding="async">
       <figcaption>Illustration based on the error described in this case. This is not a screenshot from the client site.
       </figcaption>
     </figure>
@@ -70,7 +68,7 @@
             <code>widgetType</code> key in the page's saved Elementor data.
             <div class="code">
               <div class="code-bar"><span>PHP fatal error</span><button type="button" data-copy>Copy</button></div>
-              <pre><code><span class="r">Uncaught Error: Call to a member function get_default_args() on array</span></code></pre>
+              <pre tabindex="0"><code><span class="r">Uncaught Error: Call to a member function get_default_args() on array</span></code></pre>
             </div>
           </li>
           <li><strong>First hypothesis: a plugin version mismatch</strong>The error pattern, a malformed element in
@@ -155,7 +153,7 @@
         href="case-plugin-update.html">Next case &rarr;</a></div>
   </main>
   <footer>
-    <p>Tegano Masinde · WordPress support · teganomasinde.blog</p>
+    <p>Tegano Masinde · WordPress support · softwarebreaks.online</p>
     <a href="../index.html">Back to home</a>
   </footer>
   <script src="../script.js"></script>

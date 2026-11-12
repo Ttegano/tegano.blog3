@@ -67,7 +67,8 @@ a {
 
 img {
   max-width: 100%;
-  display: block
+  height: auto; /* the width/height attributes only reserve space; CSS sets the real height */
+  display: block;
 }
 
 code {
@@ -955,7 +956,7 @@ section {
 
 .case-fig img {
   width: 100%;
-  aspect-ratio: 16/8;
+  aspect-ratio: 2.4 / 1;
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 24px 50px -24px rgba(10, 31, 68, .5);
@@ -1419,7 +1420,7 @@ footer a {
   .about-more,
   .case-grid,
   .report {
-    grid-template-columns: 1fr
+    grid-template-columns: minmax(0, 1fr)
   }
 
   .about {
@@ -1436,7 +1437,7 @@ footer a {
   }
 
   .rows {
-    grid-template-columns: 1fr
+    grid-template-columns: minmax(0, 1fr)
   }
 }
 
@@ -1449,7 +1450,7 @@ footer a {
   .cases,
   .steps,
   .two-f {
-    grid-template-columns: 1fr
+    grid-template-columns: minmax(0, 1fr)
   }
 
   .nav-cta {
@@ -1496,3 +1497,92 @@ footer a {
     opacity: 1
   }
 }
+
+/* ===== Added: urgent hero, security section, blog, diagrams ===== */
+.btn.hot{background:#ffc233;color:#10264f;border-color:#ffc233;font-weight:700;animation:hotglow 2.6s ease-in-out infinite}
+.btn.hot:hover{background:#ffd25e}
+@keyframes hotglow{0%,100%{box-shadow:0 0 0 0 rgba(255,194,51,.55)}50%{box-shadow:0 0 0 12px rgba(255,194,51,0),0 0 24px 4px rgba(255,194,51,.45)}}
+.alert-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,194,51,.16);border:1px solid rgba(255,194,51,.5);color:#ffe29a;padding:6px 14px;border-radius:99px;font-size:.85rem;font-weight:500;margin-bottom:18px}
+.alert-pill .i{width:1.1em;height:1.1em}
+.hero h1{max-width:22ch}
+.hero .fine{font-size:.85rem;color:#a9c4ee;margin:0 0 1.6em}
+.hero .fine a{color:#cfe0fb}
+
+.sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:2em}
+.sec-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:16px;padding:26px}
+.sec-card:nth-child(2){border-top-color:#19a58a}
+.sec-card:nth-child(3){border-top-color:#e0a43a}
+.sec-card h3{font-size:1.1rem}
+.sec-card p{color:var(--muted);font-size:.94rem}
+.sec-card ul{margin:0;padding-left:1.1em;color:var(--muted);font-size:.92rem}
+.sec-card li{margin-bottom:.4em}
+.sec-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:2em}
+.sec-cta p{margin:0;color:var(--muted)}
+
+.post-card{display:grid;grid-template-columns:1fr 1.1fr;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative;margin-top:2em;transition:box-shadow .3s,border-color .3s,transform .3s}
+.post-card:hover{border-color:var(--blue);box-shadow:0 18px 34px -18px rgba(29,95,209,.55);transform:translateY(-4px)}
+.post-card img{width:100%;height:100%;object-fit:cover;min-height:220px;background:var(--navy)}
+.post-body{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:28px 30px}
+.post-body h3{font-size:1.25rem}
+.post-body h3 a{color:var(--ink);text-decoration:none}
+.post-body h3 a::after{content:"";position:absolute;inset:0}
+.post-body p{color:var(--muted);font-size:.95rem}
+.post-card:hover .go{transform:translateX(4px) scale(1.08);background:var(--blue)}
+
+.dia{margin:1.8em 0}
+.dia canvas{display:block;width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:16px}
+.dia figcaption{font-size:.84rem;color:var(--muted);margin-top:8px}
+.sources{font-size:.88rem;color:var(--muted)}
+.sources li{margin-bottom:.4em}
+.checklist{list-style:none;padding:0!important}
+.checklist li{position:relative;padding-left:30px}
+.checklist li::before{content:"";position:absolute;left:0;top:.35em;width:18px;height:18px;border-radius:5px;background:var(--sky);border:2px solid var(--blue)}
+.mail-sample{background:var(--sky-2);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:.92rem;margin:1em 0}
+
+@media (max-width:940px){
+  .sec-grid{grid-template-columns: minmax(0, 1fr)}
+  .post-card{grid-template-columns: minmax(0, 1fr)}
+  .post-card img{height:200px}
+}
+@media (max-width:640px){
+  .hero{padding-block:64px 56px}
+  .btn{width:100%;text-align:center}
+  .actions{flex-direction:column;align-items:stretch}
+  .pick-bar .btn,.nav-cta{width:auto}
+  .post-body{padding:22px}
+}
+
+.menu{overflow-y:auto}
+.menu li a{font-size:clamp(1.35rem,4.2vw,2.3rem);padding:12px 0}
+
+/* Shorter images on small screens */
+@media (max-width: 940px) {
+  .case-fig img { aspect-ratio: 2 / 1; }
+}
+@media (max-width: 640px) {
+  .case-fig img { aspect-ratio: 2.2 / 1; border-radius: 14px; }
+  .case-card img { aspect-ratio: 2 / 1; }
+  .post-card img { height: 150px; min-height: 0; }
+  .portrait { max-width: 220px; }
+  .portrait img { aspect-ratio: 1 / 1; }
+}
+
+/* Let grid children shrink so long code lines scroll inside their box instead of widening the page */
+.prose, .note-box, .form-card, .report-intro, .stages > li, .about > div, .about-more > div { min-width: 0; }
+.code { max-width: 100%; }
+.code pre { max-width: 100%; }
+
+/* Form fields fill their box instead of using the browser's default width */
+.field { min-width: 0; }
+.field input, .field textarea, .field select { width: 100%; min-width: 0; }
+
+@media (max-width: 640px) {
+  /* give the numbered steps on the case pages more room for text */
+  .stages > li { padding-left: 40px; margin-left: 12px; }
+  .stages > li::before { width: 28px; height: 28px; left: -15px; font-size: .78rem; }
+  .code pre { font-size: .78rem; padding: 14px; }
+}
+
+/* empty error lines should not leave gaps */
+.err { margin: 0; }
+.err:empty { display: none; }

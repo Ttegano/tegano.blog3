@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "html-validate:recommended"
+  ],
+  "rules": {
+    "no-trailing-whitespace": "off",
+    "void-style": "off",
+    "attr-quotes": "off",
+    "no-inline-style": "off",
+    "prefer-native-element": "off",
+    "long-title": "off",
+    "no-redundant-role": "off",
+    "svg-focusable": "off",
+    "attribute-boolean-style": "off",
+    "doctype-style": "off",
+    "no-implicit-button-type": "off",
+    "form-dup-name": [
+      "error",
+      {
+        "shared": [
+          "radio",
+          "checkbox",
+          "button",
+          "reset",
+          "submit"
+        ]
+      }
+    ]
+  }
+}

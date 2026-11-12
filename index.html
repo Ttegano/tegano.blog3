@@ -2,12 +2,15 @@
 <html lang="en">
 
 <head>
-  <meta name="referrer" content="no-referrer">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tegano Masinde | WordPress help when your website breaks</title>
-  <meta name="description"
-    content="Website down, hacked or acting up? Tegano Masinde fixes WordPress problems and keeps your site healthy, with updates in plain English.">
+  <meta name="description" content="Is your WordPress site safe from the critical October 2026 PHP flaws? Tegano Masinde audits servers, fixes broken and hacked sites, and explains everything in plain English.">
+  <meta name="theme-color" content="#0a1f44">
+  <meta property="og:title" content="Is your WordPress site safe from the critical October 2026 PHP flaws?">
+  <meta property="og:description" content="Emergency security audits, PHP updates and WordPress repairs, explained in plain English.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%231d5fd1' d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,282 +21,213 @@
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="top">
-    <a class="brand" href="index.html"><svg class="i">
-        <use href="#i-shield" />
-      </svg>Tegano Masinde</a>
+    <a class="brand" href="index.html"><svg class="i"><use href="#i-shield" /></svg>Tegano Masinde</a>
     <div class="top-actions">
       <a class="nav-cta" href="report.html">Report an issue</a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span
-          class="bars"></span>Menu</button>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="bars"></span>Menu</button>
     </div>
   </header>
 
   <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
-    <button class="menu-close" type="button"><svg class="i">
-        <use href="#i-x" />
-      </svg>Close</button>
+    <button class="menu-close" type="button"><svg class="i"><use href="#i-x" /></svg>Close</button>
     <ul>
-      <li style="--n:0"><a href="index.html"><small>Start</small>HOME</a></li>
-      <li style="--n:1"><a href="index.html#problems"><small>Problems</small>WHAT I FIX</a></li>
-      <li style="--n:2"><a href="index.html#cases"><small>Case files</small>CASE STUDIES</a></li>
-      <li style="--n:3"><a href="index.html#about"><small>About</small>MEET TEGANO</a></li>
-      <li style="--n:4"><a href="report.html"><small>Help</small>REPORT AN ISSUE</a></li>
+      <li style="--n:0"><a href="index.html"><small>Start</small>Home</a></li>
+      <li style="--n:1"><a href="index.html#security"><small>Security</small>Security &amp; hardening</a></li>
+      <li style="--n:2"><a href="index.html#problems"><small>Problems</small>What I fix</a></li>
+      <li style="--n:3"><a href="index.html#cases"><small>Case files</small>Case studies</a></li>
+      <li style="--n:4"><a href="index.html#blog"><small>Notes</small>Blog</a></li>
+      <li style="--n:5"><a href="index.html#about"><small>About</small>Meet Tegano</a></li>
+      <li style="--n:6"><a href="report.html"><small>Help</small>Report an issue</a></li>
     </ul>
-    <p class="menu-foot">Freelance work: <a href="https://softwarebreaks.online" target="_blank"
-        rel="noopener">SoftwareBreaks.online</a></p>
   </div>
 
   <main id="main">
+    <!-- URGENT HERO: update or remove this block when the PHP2Shell news is no longer current -->
     <section class="hero" id="top">
       <canvas id="bg" aria-hidden="true"></canvas>
       <div class="hero-in">
-        <h1>Is your WordPress website down or acting up? I'll get it working again.</h1>
-        <p>I'm Tegano. For 3½ years I've been the person business owners call when their website breaks, gets hacked, or
-          stops doing what it should. I fix it, then explain what happened in plain English.</p>
+        <span class="alert-pill"><svg class="i"><use href="#i-zap" /></svg>Emergency PHP security updates, 21 October 2026</span>
+        <h1>Is Your WordPress Site Safe From the Critical October 2026 PHP Flaws?</h1>
+        <p>Two serious flaws nicknamed "PHP2Shell" were fixed in emergency PHP updates on 21 October 2026. They can let attackers run their own commands on a web server without even logging in, and updating WordPress or your plugins does not close them. I help businesses check their servers, update PHP safely, and close the gaps before attackers find them.</p>
         <div class="actions">
-          <a class="btn light" href="report.html">Report an issue</a>
-          <a class="btn ghost" href="#cases">Read my case studies</a>
+          <a class="btn hot" href="report.html?issues=audit">Book an Emergency Security Audit</a>
+          <a class="btn ghost" href="blog/php2shell-wordpress-explained.html">Read the plain-English guide</a>
         </div>
+        <p class="fine">Fixed in PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12. Not sure which one your site runs? The guide shows you how to check in a minute.</p>
         <ul class="chips">
-          <li><svg class="i">
-              <use href="#i-db" />
-            </svg>Safe copy saved before every fix</li>
-          <li><svg class="i">
-              <use href="#i-chat" />
-            </svg>Updates in plain English</li>
-          <li><svg class="i">
-              <use href="#i-shield" />
-            </svg>Fixes the cause, not just the symptom</li>
+          <li><svg class="i"><use href="#i-db" /></svg>Safe copy saved before every fix</li>
+          <li><svg class="i"><use href="#i-chat" /></svg>Updates in plain English</li>
+          <li><svg class="i"><use href="#i-shield" /></svg>Fixes the cause, not just the symptom</li>
         </ul>
       </div>
     </section>
 
-    <section id="problems">
+    <section id="security">
+      <h2 class="rv">WordPress security &amp; hardening</h2>
+      <p class="lead rv">Some problems can't be fixed from your WordPress dashboard. They live in the server underneath your site. That's the layer I work on.</p>
+      <div class="sec-grid">
+        <article class="sec-card rv">
+          <span class="ico"><svg class="i"><use href="#i-server" /></svg></span>
+          <h3>Server stack updates</h3>
+          <p>The software your hosting runs, especially PHP, needs its own updates. I check what your server is running and bring it up to a safe, supported version.</p>
+          <ul>
+            <li>Audit of your hosting setup</li>
+            <li>Safe upgrades from old PHP (8.0 and 8.1 no longer get security fixes) to 8.2 or newer</li>
+            <li>Settings updated so the fix really takes hold</li>
+          </ul>
+        </article>
+        <article class="sec-card rv">
+          <span class="ico"><svg class="i"><use href="#i-refresh" /></svg></span>
+          <h3>Core &amp; extended maintenance</h3>
+          <p>Careful updates to WordPress itself, your theme and your plugins, with a backup first and a test before anything goes live.</p>
+          <ul>
+            <li>Manual WordPress updates done safely</li>
+            <li>Theme and plugin compatibility testing</li>
+            <li>Quick action when a plugin is found to have a serious security hole</li>
+          </ul>
+        </article>
+        <article class="sec-card rv">
+          <span class="ico"><svg class="i"><use href="#i-shield" /></svg></span>
+          <h3>Proactive security setup</h3>
+          <p>Protection that works before something goes wrong, so problems are blocked or spotted early.</p>
+          <ul>
+            <li>A firewall that blocks attacks before they reach your site</li>
+            <li>Activity logs, so odd behaviour is noticed early</li>
+            <li>Two-step login (2FA), so a stolen password isn't enough</li>
+          </ul>
+        </article>
+      </div>
+      <div class="sec-cta rv">
+        <a class="btn hot" href="report.html?issues=audit">Book an Emergency Security Audit</a>
+        <p>I'll tell you what your site runs, who is responsible for updating it, and what to do next.</p>
+      </div>
+    </section>
+
+    <section class="soft" id="problems">
       <h2 class="rv">What's going wrong with your system?</h2>
-      <p class="lead rv">Tap the ones that sound like yours. You can pick more than one, then continue to a short report
-        form.</p>
+      <p class="lead rv">Tap the ones that sound like yours. You can pick more than one, then continue to a short report form.</p>
       <div class="grid3">
         <button type="button" class="card rv" data-issue="error" aria-pressed="false">
-          <span class="tick"><svg class="i">
-              <use href="#i-check" />
-            </svg></span>
-          <span class="ico"><svg class="i">
-              <use href="#i-alert" />
-            </svg></span>
+          <span class="tick"><svg class="i"><use href="#i-check" /></svg></span>
+          <span class="ico"><svg class="i"><use href="#i-alert" /></svg></span>
           <span class="card-t">Something broke or it's showing an error</span>
-          <span class="card-d">Your visitors see "critical error", a white page, or nothing at all. I find the cause and
-            bring it back.</span>
+          <span class="card-d">Your visitors see "critical error", a white page, or nothing at all. I find the cause and bring it back.</span>
         </button>
         <button type="button" class="card rv" data-issue="hacked" aria-pressed="false">
-          <span class="tick"><svg class="i">
-              <use href="#i-check" />
-            </svg></span>
-          <span class="ico"><svg class="i">
-              <use href="#i-shield" />
-            </svg></span>
+          <span class="tick"><svg class="i"><use href="#i-check" /></svg></span>
+          <span class="ico"><svg class="i"><use href="#i-shield" /></svg></span>
           <span class="card-t">I think I've been hacked</span>
-          <span class="card-d">It sends visitors somewhere else, shows strange pages, or Google warns people away. I
-            clean it and lock it down.</span>
+          <span class="card-d">It sends visitors somewhere else, shows strange pages, or Google warns people away. I clean it and lock it down.</span>
         </button>
         <button type="button" class="card rv" data-issue="update" aria-pressed="false">
-          <span class="tick"><svg class="i">
-              <use href="#i-check" />
-            </svg></span>
-          <span class="ico"><svg class="i">
-              <use href="#i-refresh" />
-            </svg></span>
+          <span class="tick"><svg class="i"><use href="#i-check" /></svg></span>
+          <span class="ico"><svg class="i"><use href="#i-refresh" /></svg></span>
           <span class="card-t">It broke after an update</span>
-          <span class="card-d">Everything worked until you clicked "update". I undo the damage and sort out which update
-            caused it.</span>
+          <span class="card-d">Everything worked until you clicked "update". I undo the damage and sort out which update caused it.</span>
         </button>
         <button type="button" class="card rv" data-issue="slow" aria-pressed="false">
-          <span class="tick"><svg class="i">
-              <use href="#i-check" />
-            </svg></span>
-          <span class="ico"><svg class="i">
-              <use href="#i-gauge" />
-            </svg></span>
+          <span class="tick"><svg class="i"><use href="#i-check" /></svg></span>
+          <span class="ico"><svg class="i"><use href="#i-gauge" /></svg></span>
           <span class="card-t">It's very slow and heavy</span>
           <span class="card-d">Pages take ages to load and visitors leave. I find what's weighing the site down.</span>
         </button>
         <button type="button" class="card rv" data-issue="login" aria-pressed="false">
-          <span class="tick"><svg class="i">
-              <use href="#i-check" />
-            </svg></span>
-          <span class="ico"><svg class="i">
-              <use href="#i-lock" />
-            </svg></span>
+          <span class="tick"><svg class="i"><use href="#i-check" /></svg></span>
+          <span class="ico"><svg class="i"><use href="#i-lock" /></svg></span>
           <span class="card-t">I can't log in</span>
-          <span class="card-d">Locked out of your own admin area, or stuck in a loop of login pages. I get you back in
-            safely.</span>
+          <span class="card-d">Locked out of your own admin area, or stuck in a loop of login pages. I get you back in safely.</span>
         </button>
         <button type="button" class="card rv" data-issue="visibility" aria-pressed="false">
-          <span class="tick"><svg class="i">
-              <use href="#i-check" />
-            </svg></span>
-          <span class="ico"><svg class="i">
-              <use href="#i-search" />
-            </svg></span>
+          <span class="tick"><svg class="i"><use href="#i-check" /></svg></span>
+          <span class="ico"><svg class="i"><use href="#i-search" /></svg></span>
           <span class="card-t">My site is invisible on search engines and AI</span>
-          <span class="card-d">Customers can't find you, while other businesses in your field get listed and you
-            don't.</span>
+          <span class="card-d">Customers can't find you, while other businesses in your field get listed and you don't.</span>
         </button>
       </div>
       <p class="alt-link rv">None of these? <a href="report.html">Describe it in your own words</a>.</p>
     </section>
 
-    <section class="soft" id="cover">
+    <section id="cover">
       <h2 class="rv">Ongoing care, so problems get caught early</h2>
-      <p class="lead rv">Don't want to wait for a breakdown? Monthly care keeps your site healthy. I handle support and
-        upkeep only. I don't build new websites or do design work, which is why I'm quick at repairs.</p>
+      <p class="lead rv">Don't want to wait for a breakdown? Monthly care keeps your site healthy. I handle support and upkeep only. I don't build new websites or do design work, which is why I'm quick at repairs.</p>
       <ul class="rows">
-        <li class="rv"><svg class="i">
-            <use href="#i-refresh" />
-          </svg>
-          <div>
-            <h3>Safe updates</h3>
-            <p>Updates to WordPress, plugins and themes, done carefully and only after a backup, so nothing breaks.</p>
-          </div>
-        </li>
-        <li class="rv"><svg class="i">
-            <use href="#i-shield" />
-          </svg>
-          <div>
-            <h3>Security checks</h3>
-            <p>Regular scans for hackers and harmful code, and fixes for weak spots.</p>
-          </div>
-        </li>
-        <li class="rv"><svg class="i">
-            <use href="#i-db" />
-          </svg>
-          <div>
-            <h3>Backups you can trust</h3>
-            <p>Saved copies of your site, tested so I know they actually restore.</p>
-          </div>
-        </li>
-        <li class="rv"><svg class="i">
-            <use href="#i-pulse" />
-          </svg>
-          <div>
-            <h3>Watching your site</h3>
-            <p>Checks that your site is online and working, so I often spot trouble before you do.</p>
-          </div>
-        </li>
-        <li class="rv"><svg class="i">
-            <use href="#i-tool" />
-          </svg>
-          <div>
-            <h3>Fixes when things go wrong</h3>
-            <p>Errors, clashes between add-ons, and things that stop working.</p>
-          </div>
-        </li>
-        <li class="rv"><svg class="i">
-            <use href="#i-file" />
-          </svg>
-          <div>
-            <h3>Short, clear reports</h3>
-            <p>A simple summary of what I did and what's coming up. No confusing terms.</p>
-          </div>
-        </li>
+        <li class="rv"><svg class="i"><use href="#i-refresh" /></svg><div><h3>Safe updates</h3><p>Updates to WordPress, plugins and themes, done carefully and only after a backup, so nothing breaks.</p></div></li>
+        <li class="rv"><svg class="i"><use href="#i-shield" /></svg><div><h3>Security checks</h3><p>Regular scans for hackers and harmful code, and fixes for weak spots.</p></div></li>
+        <li class="rv"><svg class="i"><use href="#i-db" /></svg><div><h3>Backups you can trust</h3><p>Saved copies of your site, tested so I know they actually restore.</p></div></li>
+        <li class="rv"><svg class="i"><use href="#i-pulse" /></svg><div><h3>Watching your site</h3><p>Checks that your site is online and working, so I often spot trouble before you do.</p></div></li>
+        <li class="rv"><svg class="i"><use href="#i-tool" /></svg><div><h3>Fixes when things go wrong</h3><p>Errors, clashes between add-ons, and things that stop working.</p></div></li>
+        <li class="rv"><svg class="i"><use href="#i-file" /></svg><div><h3>Short, clear reports</h3><p>A simple summary of what I did and what's coming up. No confusing terms.</p></div></li>
       </ul>
     </section>
 
-    <section id="how">
+    <section class="soft" id="how">
       <h2 class="rv">How I fix your website</h2>
       <ol class="steps">
-        <li class="rv"><span class="ico"><svg class="i">
-              <use href="#i-chat" />
-            </svg></span>
-          <h3>You tell me what's wrong</h3>
-          <p>Use the report form. Say what you're seeing and what changed just before it started.</p>
-        </li>
-        <li class="rv"><span class="ico"><svg class="i">
-              <use href="#i-db" />
-            </svg></span>
-          <h3>I save a copy first</h3>
-          <p>So if anything goes sideways, we can go straight back.</p>
-        </li>
-        <li class="rv"><span class="ico"><svg class="i">
-              <use href="#i-search" />
-            </svg></span>
-          <h3>I find the real cause</h3>
-          <p>I trace the problem step by step instead of guessing.</p>
-        </li>
-        <li class="rv"><span class="ico"><svg class="i">
-              <use href="#i-check" />
-            </svg></span>
-          <h3>I fix it and test it</h3>
-          <p>I try the site as a visitor would, then send you a plain summary.</p>
-        </li>
+        <li class="rv"><span class="ico"><svg class="i"><use href="#i-chat" /></svg></span><h3>You tell me what's wrong</h3><p>Use the report form. Say what you're seeing and what changed just before it started.</p></li>
+        <li class="rv"><span class="ico"><svg class="i"><use href="#i-db" /></svg></span><h3>I save a copy first</h3><p>So if anything goes sideways, we can go straight back.</p></li>
+        <li class="rv"><span class="ico"><svg class="i"><use href="#i-search" /></svg></span><h3>I find the real cause</h3><p>I trace the problem step by step instead of guessing.</p></li>
+        <li class="rv"><span class="ico"><svg class="i"><use href="#i-check" /></svg></span><h3>I fix it and test it</h3><p>I try the site as a visitor would, then send you a plain summary.</p></li>
       </ol>
     </section>
 
-    <section class="soft" id="cases">
+    <section id="cases">
       <h2 class="rv">Case studies</h2>
       <p class="lead rv">How I investigate problems, with the evidence and the fix. Each one opens as its own page.</p>
       <div class="cases">
         <article class="case-card rv">
-          <img src="assets/security-incident.jpg" alt="" width="1200" height="675" loading="lazy">
+          <img src="assets/security-incident-card.jpg" alt="" width="720" height="480" loading="lazy" decoding="async">
           <div class="case-body">
             <span class="tag">Security incident</span>
-            <h3><a href="cases/case-elementor-compromise.html">Every page crashed. The real cause was hidden spam
-                and a
-                backdoor.</a></h3>
-            <p>An Elementor error looked like a simple version mismatch. Controlled tests showed a pirated plugin had
-              injected spam and left a backdoor behind.</p>
-            <span class="go" aria-hidden="true"><svg class="i">
-                <use href="#i-arrow" />
-              </svg></span>
+            <h3><a href="cases/case-elementor-compromise.html">Every page crashed. The real cause was hidden spam and a backdoor.</a></h3>
+            <p>An Elementor error looked like a simple version mismatch. Controlled tests showed a pirated plugin had injected spam and left a backdoor behind.</p>
+            <span class="go" aria-hidden="true"><svg class="i"><use href="#i-arrow" /></svg></span>
           </div>
         </article>
         <article class="case-card rv">
-          <img src="assets/plugin-update-error.jpg" alt="jpg showcasing error" width="1200" height="675" loading="lazy">
+          <img src="assets/plugin-update-error-card.jpg" alt="" width="720" height="434" loading="lazy" decoding="async">
           <div class="case-body">
             <span class="tag lab">Lab simulation</span>
-            <h3><a href="cases/case-plugin-update.html">Diagnosing an HTTP 500 error after a plugin update</a>
-            </h3>
-            <p>The update timing is a lead, not proof. How to read the logs, find the failing file and confirm the fix
-              before naming a cause.</p>
-            <span class="go" aria-hidden="true"><svg class="i">
-                <use href="#i-arrow" />
-              </svg></span>
+            <h3><a href="cases/case-plugin-update.html">Diagnosing an HTTP 500 error after a plugin update</a></h3>
+            <p>The update timing is a lead, not proof. How to read the logs, find the failing file and confirm the fix before naming a cause.</p>
+            <span class="go" aria-hidden="true"><svg class="i"><use href="#i-arrow" /></svg></span>
           </div>
         </article>
         <article class="case-card rv">
-          <img src="assets/server.jpg" alt="" width="1200" height="675" loading="lazy">
+          <img src="assets/server-card.jpg" alt="" width="720" height="405" loading="lazy" decoding="async">
           <div class="case-body">
             <span class="tag lab">Own test server</span>
-            <h3><a href="cases/case-server.html">Photos wouldn't upload: a size limit hiding in two
-                places</a>
-            </h3>
-            <p>A vague "HTTP error" in WordPress traced to a one-megabyte limit on the server, with a second limit
-              waiting behind it.</p>
-            <span class="go" aria-hidden="true"><svg class="i">
-                <use href="#i-arrow" />
-              </svg></span>
+            <h3><a href="cases/case-server.html">Photos wouldn't upload: a size limit hiding in two places</a></h3>
+            <p>A vague "HTTP error" in WordPress traced to a one-megabyte limit on the server, with a second limit waiting behind it.</p>
+            <span class="go" aria-hidden="true"><svg class="i"><use href="#i-arrow" /></svg></span>
           </div>
         </article>
       </div>
     </section>
 
+    <section class="soft" id="blog">
+      <h2 class="rv">From the blog</h2>
+      <p class="lead rv">Plain-English explanations of what's happening to WordPress sites right now.</p>
+      <article class="post-card rv">
+        <img src="assets/blog-php.svg" alt="" width="600" height="400" loading="lazy" decoding="async">
+        <div class="post-body">
+          <span class="tag">New · 21 October 2026</span>
+          <h3><a href="blog/php2shell-wordpress-explained.html">Why updating WordPress isn't enough against the new PHP bugs</a></h3>
+          <p>Two critical flaws in PHP itself were fixed on 21 October. Here is what they mean for your website, who is responsible for the fix, and what to do today. With diagrams.</p>
+          <span class="go" aria-hidden="true"><svg class="i"><use href="#i-arrow" /></svg></span>
+        </div>
+      </article>
+    </section>
+
     <section id="about">
       <div class="about">
         <div class="portrait rv">
-          <!-- Replace assets/portrait.svg with your photo, for example assets/tegano.jpg (portrait, about 800 x 1000) -->
-          <img src="assets/victorpassport.png" alt="Portrait of Tegano Masinde" width="200" height="250" loading="lazy">
+          <img src="assets/victorpassport.webp" alt="Portrait of Tegano Masinde" width="400" height="400" loading="lazy" decoding="async">
         </div>
         <div>
-          <h2 class="rv">I troubleshoot SOFTWARE problems beyond the dashboard and fancy USER INTERFACE.</h2>
-          <p class="rv">I'm focuse on systems built on CUSTOM SOFTWARE and WORDPRESS PORTALS. I Love diagnosing website
-            issues,
-            troubleshooting plugin and theme conflicts, investigating server-side errors, and helping businesses keep
-            their systems stable, secure and reliable.</p>
-          <p class="rv">Over the past 3.5 years I've worked with clients on website projects and support needs. That has
-            shaped how I work: understand the problem first, investigate the evidence, find the underlying cause, and
-            fix it properly instead of hiding the symptoms.</p>
-          <p class="rv">I use teganomasinde.blog as my portfolio and a place to document my troubleshooting work. My
-            freelance work runs through <a href="https://softwarebreaks.online" target="_blank"
-              rel="noopener">SoftwareBreaks.online</a>.</p>
+          <h2 class="rv">I troubleshoot software problems beyond the dashboard and the fancy user interface.</h2>
+          <p class="rv">I'm focused on systems built on custom software and WordPress portals. I love diagnosing website issues, troubleshooting plugin and theme conflicts, investigating server-side errors, and helping businesses keep their systems stable, secure and reliable.</p>
+          <p class="rv">Over the past 3½ years I've worked with clients on website projects and support needs. That has shaped how I work: understand the problem first, investigate the evidence, find the underlying cause, and fix it properly instead of hiding the symptoms.</p>
+          <p class="rv">This site is my portfolio, and a place where I write up my troubleshooting work.</p>
           <ul class="pills rv">
             <li>Support</li>
             <li>Maintenance</li>
@@ -310,33 +244,18 @@
           <ol class="timeline">
             <li>
               <h3>Freelance WordPress Support Specialist, SoftwareBreaks.online</h3>
-              <p class="when">3½ years · FREELANCER</p>
-              <p>Support, maintenance, security, code refactoring and updates for WordPress websites. Investigating
-                plugin and theme conflicts, PHP errors and server-side faults (Linux, Nginx, PHP-FPM, MariaDB),
-                recovering broken and hacked sites, and keeping live sites updated and backed up.</p>
+              <p class="when">3½ years · Freelancer</p>
+              <p>Support, maintenance, security, code refactoring and updates for WordPress websites. Investigating plugin and theme conflicts, PHP errors and server-side faults (Linux, Nginx, PHP-FPM, MariaDB), recovering broken and hacked sites, and keeping live sites updated and backed up.</p>
             </li>
           </ol>
         </div>
         <div class="rv">
           <h2>Websites I've helped</h2>
-          <!-- PLACEHOLDERS: replace with real sites (or delete the block), then remove the "ph" class -->
           <ul class="clients">
-            <li class="ph"><a href="https://hometoafrica.com/" rel="no-referrer" nofollow>Travel
-                agency</a><small>Recovered after a failed update</small>
-            </li>
-
-            <li class="ph"><a href="https://www.phoneplacekenya.com/" rel="no-referrer nofollow">Ecommerce
-                store</a><small>Checkout and payment
-                errors fixed</small></li>
-
-            <li class="ph"><a href="oletechnologies.com" rel="noreferrer nofollow">Kenyan Tech
-                company</a> <small>Malware
-                cleaned and site secured</small></li>
-
-            <li class="ph"> <a href="https://www.willowcreek.org/" rel="noreferrer nofollow">Organisation Portal</a>
-              <small>Moved to
-                a new host,improved speed, nothing lost</small>
-            </li>
+            <li><a href="https://hometoafrica.com/" target="_blank" rel="noopener noreferrer nofollow">Travel agency</a><small>Recovered after a failed update</small></li>
+            <li><a href="https://www.phoneplacekenya.com/" target="_blank" rel="noopener noreferrer nofollow">Ecommerce store</a><small>Checkout and payment errors fixed</small></li>
+            <li><a href="https://oletechnologies.com" target="_blank" rel="noopener noreferrer nofollow">Kenyan tech company</a><small>Malware cleaned and site secured</small></li>
+            <li><a href="https://www.willowcreek.org/" target="_blank" rel="noopener noreferrer nofollow">Organisation portal</a><small>Moved to a new host, improved speed, nothing lost</small></li>
           </ul>
         </div>
       </div>
@@ -344,12 +263,10 @@
 
     <section class="cta" id="contact">
       <h2 class="rv">Tell me what's happening</h2>
-      <p class="rv">Describe the problem and what changed just before it started. I'll reply with what I think is wrong
-        and the next step. Hiring? Choose "Job or contract enquiry" on the form.</p>
+      <p class="rv">Describe the problem and what changed just before it started. I'll reply with what I think is wrong and the next step. Hiring? Choose "Job or contract enquiry" on the form.</p>
       <div class="actions rv">
-        <a class="btn light" href="report.html">Report an issue</a>
-        <a class="btn ghost" href="https://softwarebreaks.online" target="_blank" rel="noopener">Visit
-          SoftwareBreaks.online</a>
+        <a class="btn hot" href="report.html?issues=audit">Book an Emergency Security Audit</a>
+        <a class="btn ghost" href="report.html">Report an issue</a>
       </div>
     </section>
   </main>
@@ -361,7 +278,7 @@
   </div>
 
   <footer>
-    <p>Tegano Masinde · WordPress support · teganomasinde.blog</p>
+    <p>Tegano Masinde · WordPress support · softwarebreaks.online</p>
     <a href="#top">Back to top</a>
   </footer>
   <script src="script.js"></script>

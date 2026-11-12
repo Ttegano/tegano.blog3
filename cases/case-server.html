@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Photos Wouldn't Upload: A Size Limit Hiding in Two Places | Tegano Masinde</title>
-  <meta name="description" content="A WordPress " HTTP error" on image uploads traced to Nginx and PHP size limits on a
+  <meta name="description" content="A WordPress &quot;HTTP error&quot; on image uploads traced to Nginx and PHP size limits on a
     LEMP test server.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,18 +26,16 @@
     </div>
   </header>
   <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
-    <button class="menu-close" type="button"><svg class="i">
-        <use href="#i-x" />
-      </svg>Close</button>
+    <button class="menu-close" type="button"><svg class="i"><use href="#i-x" /></svg>Close</button>
     <ul>
       <li style="--n:0"><a href="../index.html"><small>Start</small>Home</a></li>
-      <li style="--n:1"><a href="../index.html#problems"><small>Problems</small>What I fix</a></li>
-      <li style="--n:2"><a href="../index.html#cases"><small>Case files</small>Case studies</a></li>
-      <li style="--n:3"><a href="../index.html#about"><small>About</small>Meet Tegano</a></li>
-      <li style="--n:4"><a href="../report.html"><small>Help</small>Report an issue</a></li>
+      <li style="--n:1"><a href="../index.html#security"><small>Security</small>Security &amp; hardening</a></li>
+      <li style="--n:2"><a href="../index.html#problems"><small>Problems</small>What I fix</a></li>
+      <li style="--n:3"><a href="../index.html#cases"><small>Case files</small>Case studies</a></li>
+      <li style="--n:4"><a href="../index.html#blog"><small>Notes</small>Blog</a></li>
+      <li style="--n:5"><a href="../index.html#about"><small>About</small>Meet Tegano</a></li>
+      <li style="--n:6"><a href="../report.html"><small>Help</small>Report an issue</a></li>
     </ul>
-    <p class="menu-foot">Freelance work: <a href="https://softwarebreaks.online" target="_blank"
-        rel="noopener">SoftwareBreaks.online</a></p>
   </div>
   <main id="main">
     <section class="case-top">
@@ -51,8 +49,7 @@
         limit waiting behind it in PHP.</p>
     </section>
     <figure class="case-fig">
-      <img src="/assets/server.jpg" alt="Illustration of a WordPress image upload failing with HTTP error 413"
-        width="1200" height="675">
+      <img src="../assets/server.jpg" alt="Illustration of a server rack and computer monitor surrounded by HTML, PHP, JS and CSS tiles" width="1400" height="788" fetchpriority="high" decoding="async">
       <figcaption> Not a screenshot from a client site.</figcaption>
     </figure>
     <div class="case-grid">
@@ -71,14 +68,14 @@
             <div class="code">
               <div class="code-bar"><span>Nginx error log (typical message)</span><button type="button"
                   data-copy>Copy</button></div>
-              <pre><code><span class="r">client intended to send too large body</span></code></pre>
+              <pre tabindex="0"><code><span class="r">client intended to send too large body</span></code></pre>
             </div>
           </li>
           <li><strong>Look for overrides before changing anything</strong>A value in a server block beats the one in
             <code>nginx.conf</code>, so I searched every config file first.
             <div class="code">
               <div class="code-bar"><span>Find existing limits</span><button type="button" data-copy>Copy</button></div>
-              <pre><code>grep -rn client_max_body_size /etc/nginx/</code></pre>
+              <pre tabindex="0"><code>grep -rn client_max_body_size /etc/nginx/</code></pre>
             </div>
           </li>
           <li><strong>Fix both layers, not just one</strong>Raising only the Nginx limit would move the failure one
@@ -87,17 +84,17 @@
             The values below are examples. The right size depends on what the site needs.
             <div class="code">
               <div class="code-bar"><span>Nginx (server block)</span><button type="button" data-copy>Copy</button></div>
-              <pre><code>client_max_body_size 64M;</code></pre>
+              <pre tabindex="0"><code>client_max_body_size 64M;</code></pre>
             </div>
             <div class="code">
               <div class="code-bar"><span>PHP (php.ini)</span><button type="button" data-copy>Copy</button></div>
-              <pre><code><span class="c">; post_max_size must be at least as large as upload_max_filesize</span>
+              <pre tabindex="0"><code><span class="c">; post_max_size must be at least as large as upload_max_filesize</span>
 upload_max_filesize = 64M
 post_max_size = 72M</code></pre>
             </div>
             <div class="code">
               <div class="code-bar"><span>Apply the changes</span><button type="button" data-copy>Copy</button></div>
-              <pre><code>sudo nginx -t &amp;&amp; sudo systemctl reload nginx
+              <pre tabindex="0"><code>sudo nginx -t &amp;&amp; sudo systemctl reload nginx
 sudo systemctl restart php-fpm</code></pre>
             </div>
           </li>
@@ -113,7 +110,7 @@ sudo systemctl restart php-fpm</code></pre>
             <div class="code">
               <div class="code-bar"><span>Restore the working address with WP-CLI</span><button type="button"
                   data-copy>Copy</button></div>
-              <pre><code>wp option update home 'http://example.local'
+              <pre tabindex="0"><code>wp option update home 'http://example.local'
 wp option update siteurl 'http://example.local'</code></pre>
             </div>
           </li>
@@ -123,7 +120,7 @@ wp option update siteurl 'http://example.local'</code></pre>
             <div class="code">
               <div class="code-bar"><span>Test a domain directly, bypassing the browser</span><button type="button"
                   data-copy>Copy</button></div>
-              <pre><code>curl -I -H 'Host: example.local' http://127.0.0.1/</code></pre>
+              <pre tabindex="0"><code>curl -I -H 'Host: example.local' http://127.0.0.1/</code></pre>
             </div>
           </li>
         </ul>
@@ -140,7 +137,7 @@ wp option update siteurl 'http://example.local'</code></pre>
         studies</a><span></span></div>
   </main>
   <footer>
-    <p>Tegano Masinde · WordPress support · teganomasinde.blog</p>
+    <p>Tegano Masinde · WordPress support · softwarebreaks.online</p>
     <a href="../index.html">Back to home</a>
   </footer>
   <script src="../script.js"></script>

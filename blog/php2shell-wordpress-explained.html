@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why updating WordPress isn't enough against the new PHP bugs | Tegano Masinde</title>
+  <meta name="description" content="Two critical PHP flaws were fixed on 21 October 2026. A plain-English guide to why WordPress and plugin updates don't fix them, who is responsible, and what to do today.">
+  <meta name="theme-color" content="#0a1f44">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%231d5fd1' d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <a class="brand" href="../index.html"><svg class="i"><use href="#i-shield" /></svg>Tegano Masinde</a>
+    <div class="top-actions">
+      <a class="nav-cta" href="../report.html">Report an issue</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="bars"></span>Menu</button>
+    </div>
+  </header>
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+    <button class="menu-close" type="button"><svg class="i"><use href="#i-x" /></svg>Close</button>
+    <ul>
+      <li style="--n:0"><a href="../index.html"><small>Start</small>Home</a></li>
+      <li style="--n:1"><a href="../index.html#security"><small>Security</small>Security &amp; hardening</a></li>
+      <li style="--n:2"><a href="../index.html#problems"><small>Problems</small>What I fix</a></li>
+      <li style="--n:3"><a href="../index.html#cases"><small>Case files</small>Case studies</a></li>
+      <li style="--n:4"><a href="../index.html#blog"><small>Notes</small>Blog</a></li>
+      <li style="--n:5"><a href="../index.html#about"><small>About</small>Meet Tegano</a></li>
+      <li style="--n:6"><a href="../report.html"><small>Help</small>Report an issue</a></li>
+    </ul>
+  </div>
+  <main id="main">
+    <section class="case-top">
+      <a class="crumb" href="../index.html#blog"><svg class="i"><use href="#i-arrow" /></svg>Back to the blog</a>
+      <div class="tags"><span class="tag">Security</span><span class="tag">21 October 2026 · 6 min read</span></div>
+      <h1>Why updating WordPress isn't enough against the new PHP bugs</h1>
+      <p class="lead">On 21 October 2026, the team behind PHP released emergency fixes for two serious flaws nicknamed "PHP2Shell". Here is what that means for your website, in plain English.</p>
+    </section>
+
+    <div class="case-grid">
+      <article class="prose">
+        <h2>What happened</h2>
+        <p>PHP is the programming language that runs WordPress. It is not part of WordPress. It lives on your hosting server, and it does the work every time someone opens a page on your site.</p>
+        <p>On 21 October 2026, the PHP team released fixes for two critical flaws, tracked as CVE-2026-109618 and CVE-2026-109619. Both are rated 9.2 out of 10 for severity. In simple terms, they can let an attacker run their own commands on a web server <strong>without logging in</strong>, just by sending it specially crafted requests.</p>
+        <p>The fixes arrived in four versions of PHP: <strong>8.2.35, 8.3.36, 8.4.27 and 8.5.12</strong>. The details became public a day earlier than planned, after they leaked. That gave attackers a head start, which is why hosting companies are rushing to update.</p>
+
+        <h2>Why the WordPress dashboard can't fix it</h2>
+        <p>Think of your website as a car. WordPress is the dashboard and the seats. Your plugins are the extras. PHP is the engine, and your hosting server is the garage it sits in. Updating WordPress is like polishing the dashboard. It's good to do, but it can't repair the engine.</p>
+        <p>PHP runs before WordPress even starts, so the version of WordPress you use makes no difference to these flaws. The same goes for plugin updates. The fix has to be installed on the server.</p>
+
+        <figure class="dia">
+          <canvas data-diagram="layers" role="img" aria-label="Diagram of five layers, from top to bottom: your visitors, your hosting server, PHP the engine (highlighted red, where the flaws are), WordPress, and plugins and theme. The server and PHP are updated by your host or server admin. WordPress and plugins are updated from your dashboard.">
+            Layers behind a website: visitors, hosting server, PHP (where the flaws are), WordPress, then plugins and theme. Server and PHP are updated by your host. WordPress and plugins are updated from your dashboard.
+          </canvas>
+          <figcaption>The layers behind your website. The glowing dot is a visitor's request travelling down through each one. The flaws are in the red layer, which your dashboard can't reach.</figcaption>
+        </figure>
+
+        <h2>So who looks after PHP on your site?</h2>
+        <p>It depends on how your site is hosted. Updating WordPress or its plugins is not the same as updating PHP. Your hosting provider, or whoever runs your server, has to do it.</p>
+
+        <figure class="dia">
+          <canvas data-diagram="who" role="img" aria-label="Diagram of three kinds of hosting. Shared hosting: your host updates PHP and you check your version is 8.2 or newer. Managed WordPress hosting: your host looks after PHP and you ask them to confirm. Your own server: you or your server admin must update PHP and restart it.">
+            Shared hosting: your host updates PHP. Managed WordPress hosting: your host looks after it. Your own server: you or your server admin must update PHP.
+          </canvas>
+          <figcaption>Who is responsible depends on your hosting. On your own server, nobody else will do it for you.</figcaption>
+        </figure>
+
+        <p>Even when your host does the work, it's worth asking. A host that has <em>scheduled</em> the update hasn't <em>installed</em> it yet, and until it's installed your site is exposed.</p>
+
+        <h2>What about older versions of PHP?</h2>
+        <p>PHP 8.1 and older no longer get routine security fixes from the PHP project. If your site runs one of those, there may be no official update to install. The safe answer is to move to a supported version, 8.2 or newer.</p>
+        <p>This is where care matters. Some older plugins and themes stop working on newer PHP. The right way is to take a backup, test the upgrade on a copy of your site, fix anything that breaks, and only then switch the live site over.</p>
+
+        <h2>What to do today</h2>
+        <figure class="dia">
+          <canvas data-diagram="steps" role="img" aria-label="Four steps: find your PHP version, check it is supported, ask your host to confirm the fix is installed, and keep their answer.">
+            Step 1: find your PHP version. Step 2: check it is supported. Step 3: ask your host to confirm. Step 4: keep their answer.
+          </canvas>
+          <figcaption>Four steps you can finish in a few minutes.</figcaption>
+        </figure>
+        <ol>
+          <li><strong>Find your PHP version.</strong> In your WordPress dashboard, go to Tools, then Site Health, then the Info tab, then Server. The PHP version is listed there.</li>
+          <li><strong>Check it's supported.</strong> You want 8.2 or newer. The fixed releases are 8.2.35, 8.3.36, 8.4.27 and 8.5.12.</li>
+          <li><strong>Ask your host to confirm the fix is installed.</strong> Don't rely on the number alone. Some hosts and Linux distributions apply the fix to their own package without changing the PHP version number you see, so the written confirmation matters more.</li>
+          <li><strong>Running your own server?</strong> Install the update, restart PHP, and check again. If you can't patch right away, the UK's National Cyber Security Centre has advised considering taking affected systems offline until you can.</li>
+          <li><strong>Keep doing the basics.</strong> Updates, backups and two-step login won't stop these flaws, but they protect you from the many other ways sites get broken into.</li>
+        </ol>
+        <div class="mail-sample">
+          <strong>A short message you can send your host:</strong><br>
+          "Please confirm which PHP version my website runs, and whether the 21 October 2026 security fix for CVE-2026-109618 and CVE-2026-109619 is installed on my server. If it isn't yet, when will it be?"
+        </div>
+
+        <h2>Need a hand?</h2>
+        <p>If you'd rather not work through this alone, I can check what your site runs, find out who is responsible for the update, upgrade PHP safely on a copy first, and confirm everything still works. I explain every step in plain English.</p>
+        <p><a class="btn hot" href="../report.html?issues=audit">Book an Emergency Security Audit</a></p>
+
+        <h2>Sources</h2>
+        <ul class="sources">
+          <li>Help Net Security, <a href="https://www.helpnetsecurity.com/2026/10/21/php2shell-php-vulnerabilities-patched-cve-2026-109618-cve-2026-109619/" target="_blank" rel="noopener noreferrer">PHP2Shell: Critical PHP vulnerabilities patched, update now!</a></li>
+          <li>Malwarebytes, <a href="https://www.malwarebytes.com/blog/bugs/2026/10/php2shell-why-websites-are-going-offline-for-emergency-security-updates" target="_blank" rel="noopener noreferrer">PHP2Shell: Why websites are going offline for emergency security updates</a></li>
+          <li>watchTowr, <a href="https://watchtowr.com/intelligence/php-remote-code-execution-php2shell/" target="_blank" rel="noopener noreferrer">PHP Remote Code Execution (PHP2Shell)</a>, includes the UK NCSC alert</li>
+          <li>SOCRadar, <a href="https://socradar.io/blog/php2shell-cve-2026-109618-cve-2026-109619/" target="_blank" rel="noopener noreferrer">PHP2Shell: CVE-2026-109618 and CVE-2026-109619</a>, timeline of the leak and release</li>
+          <li>AlmaLinux, <a href="https://almalinux.org/blog/2026-10-21-php2shell-cve-2026-109618-cve-2026-109619/" target="_blank" rel="noopener noreferrer">php2shell: patched PHP packages released</a>, on patched packages and the PHP advisories</li>
+        </ul>
+        <p class="small">Facts checked on 21 October 2026. This situation is moving quickly, so confirm the latest details with your host or on php.net.</p>
+      </article>
+
+      <aside class="note-box">
+        <b>NOTE</b>
+        <p>Two critical flaws in PHP itself, fixed on 21 October 2026, can let attackers run commands on a server without logging in.</p>
+        <p>WordPress and plugin updates can't fix them, because PHP is a separate layer on your hosting server. Your host, or your server admin, has to install the fix.</p>
+        <p>Check your PHP version today, aim for 8.2 or newer, and ask your host to confirm in writing.</p>
+      </aside>
+    </div>
+    <div class="case-nav"><a href="../index.html#blog">&larr; Back to the blog</a><a href="../report.html?issues=audit">Book an audit &rarr;</a></div>
+  </main>
+  <footer>
+    <p>Tegano Masinde · WordPress support · softwarebreaks.online</p>
+    <a href="../index.html">Back to home</a>
+  </footer>
+  <script src="../script.js"></script>
+  <script src="../diagrams.js"></script>
+</body>
+
+</html>
